@@ -233,7 +233,7 @@ Class | Method | HTTP request | Description
 ## Usage
 
 ```golang
-import sw "./harbor-go-client"
+import sw "github.com/jeremyxu2010/harbor-go-client"
 
 cfg := &sw.Configuration{
 	BasePath:      "http://${harbor_svc_ip}/api",
