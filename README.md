@@ -233,6 +233,8 @@ Class | Method | HTTP request | Description
 ## Usage
 
 ```golang
+import sw "./harbor-go-client"
+
 cfg := &sw.Configuration{
 	BasePath:      "http://${harbor_svc_ip}/api",
 	DefaultHeader: make(map[string]string),
@@ -245,8 +247,6 @@ client := sw.NewAPIClient(cfg)
 ```
 
 ## Documentation For Authorization
-
-### basicAuth
 - **Type**: HTTP basic authentication
 
 Example
@@ -259,6 +259,8 @@ r, err := client.Service.Operation(auth, args)
 ```
 
 ## Author
+
+[jeremyxu2010](https://github.com/jeremyxu2010)
 
 
 
