@@ -39,8 +39,8 @@ func (a *LabelApiService) ChartreporepoChartsnameversionLabelsGet(ctx context.Co
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -115,8 +115,8 @@ func (a *LabelApiService) ChartreporepoChartsnameversionLabelsPost(ctx context.C
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -193,8 +193,8 @@ func (a *LabelApiService) ChartreporepoChartsnameversionLabelsidDelete(ctx conte
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 

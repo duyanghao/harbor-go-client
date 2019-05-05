@@ -11,6 +11,7 @@ package swagger
 
 import (
 	"context"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
@@ -37,7 +38,7 @@ Upload a chart file to the default &#39;library&#39; project. Uploading together
 
 */
 
-type ChartrepoChartsPostOpts struct { 
+type ChartrepoChartsPostOpts struct {
 	Prov optional.Interface
 }
 
@@ -45,8 +46,8 @@ func (a *ChartRepositoryApiService) ChartrepoChartsPost(ctx context.Context, cha
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -74,11 +75,11 @@ func (a *ChartRepositoryApiService) ChartrepoChartsPost(ctx context.Context, cha
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if localVarFile != nil {
-		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	if chart != nil {
+		fbs, _ := ioutil.ReadAll(chart)
+		localVarFileName = append(localVarFileName, "chart")
+		localVarFileBytes = append(localVarFileBytes, fbs)
+		chart.Close()
 	}
 	var localVarFile *os.File
 	if localVarOptionals != nil && localVarOptionals.Prov.IsSet() {
@@ -90,8 +91,8 @@ func (a *ChartRepositoryApiService) ChartrepoChartsPost(ctx context.Context, cha
 	}
 	if localVarFile != nil {
 		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
+		localVarFileName = append(localVarFileName, localVarFile.Name())
+		localVarFileBytes = append(localVarFileBytes, fbs)
 		localVarFile.Close()
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -134,8 +135,8 @@ func (a *ChartRepositoryApiService) ChartrepoHealthGet(ctx context.Context) (Inl
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue InlineResponse200
 	)
 
@@ -222,8 +223,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsGet(ctx context.Context, 
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []ChartInfoEntry
 	)
 
@@ -312,8 +313,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameDelete(ctx context.Co
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -385,8 +386,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameGet(ctx context.Conte
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -459,8 +460,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameVersionDelete(ctx con
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -534,8 +535,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameVersionGet(ctx contex
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -607,7 +608,7 @@ Upload a chart file to the specified project. With this API, the corresponding p
 
 */
 
-type ChartrepoRepoChartsPostOpts struct { 
+type ChartrepoRepoChartsPostOpts struct {
 	Prov optional.Interface
 }
 
@@ -615,8 +616,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsPost(ctx context.Context,
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -645,11 +646,11 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsPost(ctx context.Context,
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if localVarFile != nil {
-		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	if chart != nil {
+		fbs, _ := ioutil.ReadAll(chart)
+		localVarFileName = append(localVarFileName, "chart")
+		localVarFileBytes = append(localVarFileBytes, fbs)
+		chart.Close()
 	}
 	var localVarFile *os.File
 	if localVarOptionals != nil && localVarOptionals.Prov.IsSet() {
@@ -661,8 +662,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsPost(ctx context.Context,
 	}
 	if localVarFile != nil {
 		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
+		localVarFileName = append(localVarFileName, localVarFile.Name())
+		localVarFileBytes = append(localVarFileBytes, fbs)
 		localVarFile.Close()
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -707,8 +708,8 @@ func (a *ChartRepositoryApiService) ChartrepoRepoProvPost(ctx context.Context, r
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -737,11 +738,11 @@ func (a *ChartRepositoryApiService) ChartrepoRepoProvPost(ctx context.Context, r
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if localVarFile != nil {
-		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	if prov != nil {
+		fbs, _ := ioutil.ReadAll(prov)
+		localVarFileName = append(localVarFileName, prov.Name())
+		localVarFileBytes = append(localVarFileBytes, fbs)
+		prov.Close()
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -786,8 +787,8 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsGet(ctx 
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -862,8 +863,8 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsPost(ctx
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -940,8 +941,8 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsidDelete
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 

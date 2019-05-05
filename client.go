@@ -167,8 +167,8 @@ func (c *APIClient) prepareRequest(
 	headerParams map[string]string,
 	queryParams url.Values,
 	formParams url.Values,
-	fileName string,
-	fileBytes []byte) (localVarRequest *http.Request, err error) {
+	fileName []string,
+	fileBytes [][]byte) (localVarRequest *http.Request, err error) {
 
 	var body *bytes.Buffer
 
@@ -187,7 +187,7 @@ func (c *APIClient) prepareRequest(
 	}
 
 	// add form parameters and file if available.
-	if len(formParams) > 0 || (len(fileBytes) > 0 && fileName != "") {
+	if len(formParams) > 0 || (fileBytes != nil && len(fileBytes) > 0 && fileName != nil && len(fileName) > 0) {
 		if body != nil {
 			return nil, errors.New("Cannot specify postBody and multipart form at the same time.")
 		}
@@ -206,17 +206,20 @@ func (c *APIClient) prepareRequest(
 				}
 			}
 		}
-		if len(fileBytes) > 0 && fileName != "" {
+		if fileBytes != nil && len(fileBytes) > 0 && fileName != nil && len(fileName) > 0 {
 			w.Boundary()
 			//_, fileNm := filepath.Split(fileName)
-			part, err := w.CreateFormFile("file", filepath.Base(fileName))
-			if err != nil {
-				return nil, err
+			for idx := range fileName {
+				part, err := w.CreateFormFile("file", filepath.Base(fileName[idx]))
+				if err != nil {
+					return nil, err
+				}
+				_, err = part.Write(fileBytes[idx])
+				if err != nil {
+					return nil, err
+				}
 			}
-			_, err = part.Write(fileBytes)
-			if err != nil {
-				return nil, err
-			}
+
 			// Set the Boundary in the Content-Type
 			headerParams["Content-Type"] = w.FormDataContentType()
 		}

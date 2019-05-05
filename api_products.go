@@ -38,16 +38,16 @@ Upload a chart file to the default &#39;library&#39; project. Uploading together
 
 */
 
-type ChartrepoChartsPostOpts struct { 
-	Prov optional.Interface
-}
+//type ChartrepoChartsPostOpts struct {
+//	Prov optional.Interface
+//}
 
 func (a *ProductsApiService) ChartrepoChartsPost(ctx context.Context, chart *os.File, localVarOptionals *ChartrepoChartsPostOpts) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -75,11 +75,11 @@ func (a *ProductsApiService) ChartrepoChartsPost(ctx context.Context, chart *os.
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if localVarFile != nil {
-		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	if chart != nil {
+		fbs, _ := ioutil.ReadAll(chart)
+		localVarFileName = append(localVarFileName, "chart")
+		localVarFileBytes = append(localVarFileBytes, fbs)
+		chart.Close()
 	}
 	var localVarFile *os.File
 	if localVarOptionals != nil && localVarOptionals.Prov.IsSet() {
@@ -91,8 +91,8 @@ func (a *ProductsApiService) ChartrepoChartsPost(ctx context.Context, chart *os.
 	}
 	if localVarFile != nil {
 		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
+		localVarFileName = append(localVarFileName, localVarFile.Name())
+		localVarFileBytes = append(localVarFileBytes, fbs)
 		localVarFile.Close()
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -135,8 +135,8 @@ func (a *ProductsApiService) ChartrepoHealthGet(ctx context.Context) (InlineResp
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue InlineResponse200
 	)
 
@@ -223,8 +223,8 @@ func (a *ProductsApiService) ChartrepoRepoChartsGet(ctx context.Context, repo st
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []ChartInfoEntry
 	)
 
@@ -313,8 +313,8 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameDelete(ctx context.Context, 
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -386,8 +386,8 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, rep
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -460,8 +460,8 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameVersionDelete(ctx context.Co
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -535,8 +535,8 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameVersionGet(ctx context.Conte
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -608,16 +608,16 @@ Upload a chart file to the specified project. With this API, the corresponding p
 
 */
 
-type ChartrepoRepoChartsPostOpts struct { 
-	Prov optional.Interface
-}
+//type ChartrepoRepoChartsPostOpts struct {
+//	Prov optional.Interface
+//}
 
 func (a *ProductsApiService) ChartrepoRepoChartsPost(ctx context.Context, repo string, chart *os.File, localVarOptionals *ChartrepoRepoChartsPostOpts) (*http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -646,11 +646,11 @@ func (a *ProductsApiService) ChartrepoRepoChartsPost(ctx context.Context, repo s
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if localVarFile != nil {
-		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	if chart != nil {
+		fbs, _ := ioutil.ReadAll(chart)
+		localVarFileName = append(localVarFileName, "chart")
+		localVarFileBytes = append(localVarFileBytes, fbs)
+		chart.Close()
 	}
 	var localVarFile *os.File
 	if localVarOptionals != nil && localVarOptionals.Prov.IsSet() {
@@ -662,8 +662,8 @@ func (a *ProductsApiService) ChartrepoRepoChartsPost(ctx context.Context, repo s
 	}
 	if localVarFile != nil {
 		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
+		localVarFileName = append(localVarFileName, localVarFile.Name())
+		localVarFileBytes = append(localVarFileBytes, fbs)
 		localVarFile.Close()
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
@@ -708,8 +708,8 @@ func (a *ProductsApiService) ChartrepoRepoProvPost(ctx context.Context, repo str
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -738,11 +738,11 @@ func (a *ProductsApiService) ChartrepoRepoProvPost(ctx context.Context, repo str
 	if localVarHttpHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHttpHeaderAccept
 	}
-	if localVarFile != nil {
-		fbs, _ := ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
-		localVarFile.Close()
+	if prov != nil {
+		fbs, _ := ioutil.ReadAll(prov)
+		localVarFileName = append(localVarFileName, prov.Name())
+		localVarFileBytes = append(localVarFileBytes, fbs)
+		prov.Close()
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
@@ -787,8 +787,8 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsGet(ctx context
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -863,8 +863,8 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsPost(ctx contex
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -941,8 +941,8 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsidDelete(ctx co
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1014,8 +1014,8 @@ func (a *ProductsApiService) ConfigurationsGet(ctx context.Context) (Configurati
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue ConfigurationsResponse
 	)
 
@@ -1102,8 +1102,8 @@ func (a *ProductsApiService) ConfigurationsPut(ctx context.Context, configuratio
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1173,8 +1173,8 @@ func (a *ProductsApiService) ConfigurationsResetPost(ctx context.Context) (*http
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1249,8 +1249,8 @@ func (a *ProductsApiService) EmailPingPost(ctx context.Context, localVarOptional
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1327,8 +1327,8 @@ func (a *ProductsApiService) InternalSyncregistryPost(ctx context.Context) (*htt
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1418,8 +1418,8 @@ func (a *ProductsApiService) JobsReplicationGet(ctx context.Context, policyId in
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []JobStatus
 	)
 
@@ -1531,8 +1531,8 @@ func (a *ProductsApiService) JobsReplicationIdDelete(ctx context.Context, id int
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1602,8 +1602,8 @@ func (a *ProductsApiService) JobsReplicationIdLogGet(ctx context.Context, id int
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1673,8 +1673,8 @@ func (a *ProductsApiService) JobsReplicationPut(ctx context.Context, policyinfo 
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1745,8 +1745,8 @@ func (a *ProductsApiService) JobsScanIdLogGet(ctx context.Context, id int64) (*h
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -1829,8 +1829,8 @@ func (a *ProductsApiService) LabelsGet(ctx context.Context, scope string, localV
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []Label
 	)
 
@@ -1930,8 +1930,8 @@ func (a *ProductsApiService) LabelsIdDelete(ctx context.Context, id int64) (*htt
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -2001,8 +2001,8 @@ func (a *ProductsApiService) LabelsIdGet(ctx context.Context, id int64) (Label, 
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue Label
 	)
 
@@ -2091,8 +2091,8 @@ func (a *ProductsApiService) LabelsIdPut(ctx context.Context, id int64, label La
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -2164,8 +2164,8 @@ func (a *ProductsApiService) LabelsIdResourcesGet(ctx context.Context, id int64)
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue Resource
 	)
 
@@ -2253,8 +2253,8 @@ func (a *ProductsApiService) LabelsPost(ctx context.Context, label Label) (*http
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -2333,8 +2333,8 @@ func (a *ProductsApiService) LdapGroupsSearchGet(ctx context.Context, localVarOp
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []UserGroup
 	)
 
@@ -2433,8 +2433,8 @@ func (a *ProductsApiService) LdapPingPost(ctx context.Context, localVarOptionals
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -2512,8 +2512,8 @@ func (a *ProductsApiService) LdapUsersImportPost(ctx context.Context, uidList Ld
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -2601,8 +2601,8 @@ func (a *ProductsApiService) LdapUsersSearchGet(ctx context.Context, localVarOpt
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []LdapUsers
 	)
 
@@ -2712,8 +2712,8 @@ func (a *ProductsApiService) LogsGet(ctx context.Context, localVarOptionals *Log
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []AccessLog
 	)
 
@@ -2836,8 +2836,8 @@ func (a *ProductsApiService) PoliciesReplicationGet(ctx context.Context, localVa
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []RepPolicy
 	)
 
@@ -2936,8 +2936,8 @@ func (a *ProductsApiService) PoliciesReplicationIdDelete(ctx context.Context, id
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -3007,8 +3007,8 @@ func (a *ProductsApiService) PoliciesReplicationIdGet(ctx context.Context, id in
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue RepPolicy
 	)
 
@@ -3097,8 +3097,8 @@ func (a *ProductsApiService) PoliciesReplicationIdPut(ctx context.Context, id in
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -3170,8 +3170,8 @@ func (a *ProductsApiService) PoliciesReplicationPost(ctx context.Context, policy
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -3256,8 +3256,8 @@ func (a *ProductsApiService) ProjectsGet(ctx context.Context, localVarOptionals 
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []Project
 	)
 
@@ -3359,8 +3359,8 @@ func (a *ProductsApiService) ProjectsHead(ctx context.Context, projectName strin
 	var (
 		localVarHttpMethod = strings.ToUpper("Head")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -3430,8 +3430,8 @@ func (a *ProductsApiService) ProjectsPost(ctx context.Context, project ProjectRe
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -3502,8 +3502,8 @@ func (a *ProductsApiService) ProjectsProjectIdDelete(ctx context.Context, projec
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -3573,8 +3573,8 @@ func (a *ProductsApiService) ProjectsProjectIdGet(ctx context.Context, projectId
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue Project
 	)
 
@@ -3683,8 +3683,8 @@ func (a *ProductsApiService) ProjectsProjectIdLogsGet(ctx context.Context, proje
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []AccessLog
 	)
 
@@ -3803,8 +3803,8 @@ func (a *ProductsApiService) ProjectsProjectIdMembersGet(ctx context.Context, pr
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []ProjectMemberEntity
 	)
 
@@ -3895,8 +3895,8 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidDelete(ctx context.Conte
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -3968,8 +3968,8 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidGet(ctx context.Context,
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue ProjectMemberEntity
 	)
 
@@ -4066,8 +4066,8 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidPut(ctx context.Context,
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -4154,8 +4154,8 @@ func (a *ProductsApiService) ProjectsProjectIdMembersPost(ctx context.Context, p
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -4234,8 +4234,8 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasGet(ctx context.Context, 
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue ProjectMetadata
 	)
 
@@ -4324,8 +4324,8 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNameDelete(ctx contex
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -4397,8 +4397,8 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNameGet(ctx context.C
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue ProjectMetadata
 	)
 
@@ -4488,8 +4488,8 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNamePut(ctx context.C
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -4561,8 +4561,8 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasPost(ctx context.Context,
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -4635,8 +4635,8 @@ func (a *ProductsApiService) ProjectsProjectIdPut(ctx context.Context, projectId
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -4708,8 +4708,8 @@ func (a *ProductsApiService) ReplicationsPost(ctx context.Context, policyID Repl
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue ReplicationResponse
 	)
 
@@ -4813,8 +4813,8 @@ func (a *ProductsApiService) RepositoriesGet(ctx context.Context, projectId int3
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []Repository
 	)
 
@@ -4917,8 +4917,8 @@ func (a *ProductsApiService) RepositoriesRepoNameDelete(ctx context.Context, rep
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -4988,8 +4988,8 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsGet(ctx context.Context, 
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []Label
 	)
 
@@ -5078,8 +5078,8 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsLabelIdDelete(ctx context
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -5151,8 +5151,8 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsPost(ctx context.Context,
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -5225,8 +5225,8 @@ func (a *ProductsApiService) RepositoriesRepoNamePut(ctx context.Context, repoNa
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -5298,8 +5298,8 @@ func (a *ProductsApiService) RepositoriesRepoNameSignaturesGet(ctx context.Conte
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []RepoSignature
 	)
 
@@ -5394,8 +5394,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsGet(ctx context.Context, re
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []DetailedTag
 	)
 
@@ -5487,8 +5487,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsPost(ctx context.Context, r
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -5561,8 +5561,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagDelete(ctx context.Conte
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -5634,8 +5634,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagGet(ctx context.Context,
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue DetailedTag
 	)
 
@@ -5725,8 +5725,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsGet(ctx context.Co
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []Label
 	)
 
@@ -5817,8 +5817,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsLabelIdDelete(ctx 
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -5892,8 +5892,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsPost(ctx context.C
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -5974,8 +5974,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagManifestGet(ctx context.
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue Manifest
 	)
 
@@ -6068,8 +6068,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagScanPost(ctx context.Con
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -6141,8 +6141,8 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagVulnerabilityDetailsGet(
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []VulnerabilityItem
 	)
 
@@ -6237,8 +6237,8 @@ func (a *ProductsApiService) RepositoriesScanAllPost(ctx context.Context, localV
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -6316,8 +6316,8 @@ func (a *ProductsApiService) RepositoriesTopGet(ctx context.Context, localVarOpt
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []Repository
 	)
 
@@ -6407,8 +6407,8 @@ func (a *ProductsApiService) SearchGet(ctx context.Context, q string) ([]Search,
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []Search
 	)
 
@@ -6495,8 +6495,8 @@ func (a *ProductsApiService) StatisticsGet(ctx context.Context) (StatisticMap, *
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue StatisticMap
 	)
 
@@ -6582,8 +6582,8 @@ func (a *ProductsApiService) SystemGcGet(ctx context.Context) ([]GcResult, *http
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []GcResult
 	)
 
@@ -6670,8 +6670,8 @@ func (a *ProductsApiService) SystemGcIdGet(ctx context.Context, id int64) ([]GcR
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []GcResult
 	)
 
@@ -6759,8 +6759,8 @@ func (a *ProductsApiService) SystemGcIdLogGet(ctx context.Context, id int64) (st
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue string
 	)
 
@@ -6847,8 +6847,8 @@ func (a *ProductsApiService) SystemGcScheduleGet(ctx context.Context) ([]GcSched
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []GcSchedule
 	)
 
@@ -6935,8 +6935,8 @@ func (a *ProductsApiService) SystemGcSchedulePost(ctx context.Context, schedule 
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -7007,8 +7007,8 @@ func (a *ProductsApiService) SystemGcSchedulePut(ctx context.Context, schedule G
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -7078,8 +7078,8 @@ func (a *ProductsApiService) SysteminfoGet(ctx context.Context) (GeneralInfo, *h
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue GeneralInfo
 	)
 
@@ -7165,8 +7165,8 @@ func (a *ProductsApiService) SysteminfoGetcertGet(ctx context.Context) (*http.Re
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -7234,8 +7234,8 @@ func (a *ProductsApiService) SysteminfoVolumesGet(ctx context.Context) (SystemIn
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue SystemInfo
 	)
 
@@ -7328,8 +7328,8 @@ func (a *ProductsApiService) TargetsGet(ctx context.Context, localVarOptionals *
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []RepTarget
 	)
 
@@ -7419,8 +7419,8 @@ func (a *ProductsApiService) TargetsIdDelete(ctx context.Context, id int64) (*ht
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -7490,8 +7490,8 @@ func (a *ProductsApiService) TargetsIdGet(ctx context.Context, id int64) (RepTar
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue RepTarget
 	)
 
@@ -7579,8 +7579,8 @@ func (a *ProductsApiService) TargetsIdPoliciesGet(ctx context.Context, id int64)
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []RepPolicy
 	)
 
@@ -7669,8 +7669,8 @@ func (a *ProductsApiService) TargetsIdPut(ctx context.Context, id int64, repoTar
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -7742,8 +7742,8 @@ func (a *ProductsApiService) TargetsPingPost(ctx context.Context, target PingTar
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -7814,8 +7814,8 @@ func (a *ProductsApiService) TargetsPost(ctx context.Context, reptarget RepTarge
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -7885,8 +7885,8 @@ func (a *ProductsApiService) UsergroupsGet(ctx context.Context) ([]UserGroup, *h
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []UserGroup
 	)
 
@@ -7973,8 +7973,8 @@ func (a *ProductsApiService) UsergroupsGroupIdDelete(ctx context.Context, groupI
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -8044,8 +8044,8 @@ func (a *ProductsApiService) UsergroupsGroupIdGet(ctx context.Context, groupId i
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue UserGroup
 	)
 
@@ -8140,8 +8140,8 @@ func (a *ProductsApiService) UsergroupsGroupIdPut(ctx context.Context, groupId i
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -8226,8 +8226,8 @@ func (a *ProductsApiService) UsergroupsPost(ctx context.Context, localVarOptiona
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -8304,8 +8304,8 @@ func (a *ProductsApiService) UsersCurrentGet(ctx context.Context) (User, *http.R
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue User
 	)
 
@@ -8404,8 +8404,8 @@ func (a *ProductsApiService) UsersGet(ctx context.Context, localVarOptionals *Us
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue []User
 	)
 
@@ -8504,8 +8504,8 @@ func (a *ProductsApiService) UsersPost(ctx context.Context, user User) (*http.Re
 	var (
 		localVarHttpMethod = strings.ToUpper("Post")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -8576,8 +8576,8 @@ func (a *ProductsApiService) UsersUserIdDelete(ctx context.Context, userId int32
 	var (
 		localVarHttpMethod = strings.ToUpper("Delete")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -8647,8 +8647,8 @@ func (a *ProductsApiService) UsersUserIdGet(ctx context.Context, userId int32) (
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		localVarReturnValue User
 	)
 
@@ -8737,8 +8737,8 @@ func (a *ProductsApiService) UsersUserIdPasswordPut(ctx context.Context, userId 
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -8811,8 +8811,8 @@ func (a *ProductsApiService) UsersUserIdPut(ctx context.Context, userId int32, p
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
@@ -8885,8 +8885,8 @@ func (a *ProductsApiService) UsersUserIdSysadminPut(ctx context.Context, userId 
 	var (
 		localVarHttpMethod = strings.ToUpper("Put")
 		localVarPostBody   interface{}
-		localVarFileName   string
-		localVarFileBytes  []byte
+		localVarFileName   []string
+		localVarFileBytes  [][]byte
 		
 	)
 
