@@ -11,13 +11,13 @@ package swagger
 
 import (
 	"context"
+	"fmt"
+	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
-	"fmt"
 	"os"
-	"github.com/antihax/optional"
+	"strings"
 )
 
 // Linger please
@@ -382,13 +382,13 @@ Get all the versions of the specified chart
 
 
 */
-func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, repo string, name string) (*http.Response, error) {
+func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, repo string, name string) ([]ChartVersion, *http.Response, error) {
 	var (
 		localVarHttpMethod = strings.ToUpper("Get")
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
+		localVarReturnValue []ChartVersion
 	)
 
 	// create path and map variables
@@ -419,18 +419,18 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, rep
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarHttpResponse, err
+		return nil, localVarHttpResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
-		return localVarHttpResponse, err
+		return nil, localVarHttpResponse, err
 	}
 
 
@@ -440,10 +440,16 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, rep
 			error: localVarHttpResponse.Status,
 		}
 		
-		return localVarHttpResponse, newErr
+		return nil, localVarHttpResponse, newErr
 	}
 
-	return localVarHttpResponse, nil
+	// If we succeed, return the data, otherwise pass on to decode error.
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+	if err == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	} else {
+		return nil, localVarHttpResponse, err
+	}
 }
 
 /* 
