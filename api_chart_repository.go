@@ -11,13 +11,13 @@ package swagger
 
 import (
 	"context"
+	"fmt"
 	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
-	"strings"
-	"fmt"
 	"os"
+	"strings"
 )
 
 // Linger please
@@ -27,7 +27,7 @@ var (
 
 type ChartRepositoryApiService service
 
-/* 
+/*
 ChartRepositoryApiService Upload a chart file to the defult &#39;library&#39; project.
 Upload a chart file to the default &#39;library&#39; project. Uploading together with the prov file at the same time is also supported.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -48,7 +48,6 @@ func (a *ChartRepositoryApiService) ChartrepoChartsPost(ctx context.Context, cha
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -86,7 +85,7 @@ func (a *ChartRepositoryApiService) ChartrepoChartsPost(ctx context.Context, cha
 		localVarFileOk := false
 		localVarFile, localVarFileOk = localVarOptionals.Prov.Value().(*os.File)
 		if !localVarFileOk {
-				return nil, reportError("prov should be *os.File")
+			return nil, reportError("prov should be *os.File")
 		}
 	}
 	if localVarFile != nil {
@@ -111,20 +110,19 @@ func (a *ChartRepositoryApiService) ChartrepoChartsPost(ctx context.Context, cha
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Check the health of chart repository service.
 Check the health of chart repository service.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -133,10 +131,10 @@ Check the health of chart repository service.
 */
 func (a *ChartRepositoryApiService) ChartrepoHealthGet(ctx context.Context) (InlineResponse200, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue InlineResponse200
 	)
 
@@ -182,36 +180,36 @@ func (a *ChartRepositoryApiService) ChartrepoHealthGet(ctx context.Context) (Inl
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v InlineResponse200
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Get all the charts under the specified project
 Get all the charts under the specified project
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -221,10 +219,10 @@ Get all the charts under the specified project
 */
 func (a *ChartRepositoryApiService) ChartrepoRepoChartsGet(ctx context.Context, repo string) ([]ChartInfoEntry, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []ChartInfoEntry
 	)
 
@@ -271,36 +269,36 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsGet(ctx context.Context, 
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []ChartInfoEntry
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Delete all the versions of the specified chart
 Delete all the versions of the specified chart
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -315,7 +313,6 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameDelete(ctx context.Co
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -360,20 +357,19 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameDelete(ctx context.Co
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Get all the versions of the specified chart
 Get all the versions of the specified chart
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -382,13 +378,13 @@ Get all the versions of the specified chart
 
 
 */
-func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameGet(ctx context.Context, repo string, name string) (*http.Response, error) {
+func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameGet(ctx context.Context, repo string, name string) ([]ChartVersion, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
-		
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
+		localVarReturnValue []ChartVersion
 	)
 
 	// create path and map variables
@@ -419,34 +415,39 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameGet(ctx context.Conte
 	}
 	r, err := a.client.prepareRequest(ctx, localVarPath, localVarHttpMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFileName, localVarFileBytes)
 	if err != nil {
-		return nil, err
+		return nil, nil, err
 	}
 
 	localVarHttpResponse, err := a.client.callAPI(r)
 	if err != nil || localVarHttpResponse == nil {
-		return localVarHttpResponse, err
+		return nil, localVarHttpResponse, err
 	}
 
 	localVarBody, err := ioutil.ReadAll(localVarHttpResponse.Body)
 	localVarHttpResponse.Body.Close()
 	if err != nil {
-		return localVarHttpResponse, err
+		return nil, localVarHttpResponse, err
 	}
-
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
-		return localVarHttpResponse, newErr
+
+		return nil, localVarHttpResponse, newErr
 	}
 
-	return localVarHttpResponse, nil
+	// If we succeed, return the data, otherwise pass on to decode error.
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+	if err == nil {
+		return localVarReturnValue, localVarHttpResponse, err
+	} else {
+		return nil, localVarHttpResponse, err
+	}
 }
 
-/* 
+/*
 ChartRepositoryApiService Delete the specified chart version
 Delete the specified chart version
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -462,7 +463,6 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameVersionDelete(ctx con
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -508,20 +508,19 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameVersionDelete(ctx con
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Get the specified chart version
 Get the specified chart version
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -537,7 +536,6 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameVersionGet(ctx contex
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -583,20 +581,19 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsNameVersionGet(ctx contex
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Upload a chart file to the specified project.
 Upload a chart file to the specified project. With this API, the corresponding provance file can be uploaded together with chart file at once.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -618,7 +615,6 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsPost(ctx context.Context,
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -657,7 +653,7 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsPost(ctx context.Context,
 		localVarFileOk := false
 		localVarFile, localVarFileOk = localVarOptionals.Prov.Value().(*os.File)
 		if !localVarFileOk {
-				return nil, reportError("prov should be *os.File")
+			return nil, reportError("prov should be *os.File")
 		}
 	}
 	if localVarFile != nil {
@@ -682,20 +678,19 @@ func (a *ChartRepositoryApiService) ChartrepoRepoChartsPost(ctx context.Context,
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Upload a provance file to the specified project.
 Upload a provance file to the specified project. The provance file should be targeted for an existing chart file.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -710,7 +705,6 @@ func (a *ChartRepositoryApiService) ChartrepoRepoProvPost(ctx context.Context, r
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -760,20 +754,19 @@ func (a *ChartRepositoryApiService) ChartrepoRepoProvPost(ctx context.Context, r
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Return the attahced labels of chart.
 Return the attahced labels of the specified chart version.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -789,7 +782,6 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsGet(ctx 
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -835,20 +827,19 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsGet(ctx 
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Mark label to chart.
 Mark label to the specified chart version.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -865,7 +856,6 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsPost(ctx
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -913,20 +903,19 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsPost(ctx
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ChartRepositoryApiService Remove label from chart.
 Remove label from the specified chart version.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -943,7 +932,6 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsidDelete
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -990,13 +978,12 @@ func (a *ChartRepositoryApiService) ChartreporepoChartsnameversionLabelsidDelete
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
