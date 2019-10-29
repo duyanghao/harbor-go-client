@@ -234,7 +234,7 @@ Class | Method | HTTP request | Description
 ## Usage
 
 ```golang
-import sw "github.com/jeremyxu2010/harbor-go-client"
+import sw "github.com/duyanghao/harbor-go-client"
 
 cfg := &sw.Configuration{
 	BasePath:      "http://${harbor_svc_ip}/api",
@@ -261,5 +261,5 @@ r, err := client.Service.Operation(auth, args)
 
 ## Author
 
-[jeremyxu2010](https://github.com/jeremyxu2010)
+[duyanghao](https://github.com/duyanghao)
 
