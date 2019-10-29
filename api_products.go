@@ -12,12 +12,13 @@ package swagger
 import (
 	"context"
 	"fmt"
-	"github.com/antihax/optional"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"os"
 	"strings"
+
+	"github.com/antihax/optional"
 )
 
 // Linger please
@@ -27,7 +28,7 @@ var (
 
 type ProductsApiService service
 
-/* 
+/*
 ProductsApiService Upload a chart file to the defult &#39;library&#39; project.
 Upload a chart file to the default &#39;library&#39; project. Uploading together with the prov file at the same time is also supported.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -48,7 +49,6 @@ func (a *ProductsApiService) ChartrepoChartsPost(ctx context.Context, chart *os.
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -86,7 +86,7 @@ func (a *ProductsApiService) ChartrepoChartsPost(ctx context.Context, chart *os.
 		localVarFileOk := false
 		localVarFile, localVarFileOk = localVarOptionals.Prov.Value().(*os.File)
 		if !localVarFileOk {
-				return nil, reportError("prov should be *os.File")
+			return nil, reportError("prov should be *os.File")
 		}
 	}
 	if localVarFile != nil {
@@ -111,20 +111,19 @@ func (a *ProductsApiService) ChartrepoChartsPost(ctx context.Context, chart *os.
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Check the health of chart repository service.
 Check the health of chart repository service.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -133,10 +132,10 @@ Check the health of chart repository service.
 */
 func (a *ProductsApiService) ChartrepoHealthGet(ctx context.Context) (InlineResponse200, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue InlineResponse200
 	)
 
@@ -182,36 +181,36 @@ func (a *ProductsApiService) ChartrepoHealthGet(ctx context.Context) (InlineResp
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v InlineResponse200
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get all the charts under the specified project
 Get all the charts under the specified project
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -221,10 +220,10 @@ Get all the charts under the specified project
 */
 func (a *ProductsApiService) ChartrepoRepoChartsGet(ctx context.Context, repo string) ([]ChartInfoEntry, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []ChartInfoEntry
 	)
 
@@ -271,36 +270,36 @@ func (a *ProductsApiService) ChartrepoRepoChartsGet(ctx context.Context, repo st
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []ChartInfoEntry
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete all the versions of the specified chart
 Delete all the versions of the specified chart
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -315,7 +314,6 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameDelete(ctx context.Context, 
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -360,20 +358,19 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameDelete(ctx context.Context, 
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get all the versions of the specified chart
 Get all the versions of the specified chart
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -384,10 +381,10 @@ Get all the versions of the specified chart
 */
 func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, repo string, name string) ([]ChartVersion, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []ChartVersion
 	)
 
@@ -433,18 +430,17 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, rep
 		return nil, localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return nil, localVarHttpResponse, newErr
 	}
 
 	// If we succeed, return the data, otherwise pass on to decode error.
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
 	if err == nil {
 		return localVarReturnValue, localVarHttpResponse, err
 	} else {
@@ -452,7 +448,7 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameGet(ctx context.Context, rep
 	}
 }
 
-/* 
+/*
 ProductsApiService Delete the specified chart version
 Delete the specified chart version
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -468,7 +464,6 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameVersionDelete(ctx context.Co
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -514,20 +509,19 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameVersionDelete(ctx context.Co
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get the specified chart version
 Get the specified chart version
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -543,7 +537,6 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameVersionGet(ctx context.Conte
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -589,20 +582,19 @@ func (a *ProductsApiService) ChartrepoRepoChartsNameVersionGet(ctx context.Conte
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Upload a chart file to the specified project.
 Upload a chart file to the specified project. With this API, the corresponding provance file can be uploaded together with chart file at once.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -624,7 +616,6 @@ func (a *ProductsApiService) ChartrepoRepoChartsPost(ctx context.Context, repo s
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -663,7 +654,7 @@ func (a *ProductsApiService) ChartrepoRepoChartsPost(ctx context.Context, repo s
 		localVarFileOk := false
 		localVarFile, localVarFileOk = localVarOptionals.Prov.Value().(*os.File)
 		if !localVarFileOk {
-				return nil, reportError("prov should be *os.File")
+			return nil, reportError("prov should be *os.File")
 		}
 	}
 	if localVarFile != nil {
@@ -688,20 +679,19 @@ func (a *ProductsApiService) ChartrepoRepoChartsPost(ctx context.Context, repo s
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Upload a provance file to the specified project.
 Upload a provance file to the specified project. The provance file should be targeted for an existing chart file.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -716,7 +706,6 @@ func (a *ProductsApiService) ChartrepoRepoProvPost(ctx context.Context, repo str
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -766,20 +755,19 @@ func (a *ProductsApiService) ChartrepoRepoProvPost(ctx context.Context, repo str
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Return the attahced labels of chart.
 Return the attahced labels of the specified chart version.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -795,7 +783,6 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsGet(ctx context
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -841,20 +828,19 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsGet(ctx context
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Mark label to chart.
 Mark label to the specified chart version.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -871,7 +857,6 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsPost(ctx contex
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -919,20 +904,19 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsPost(ctx contex
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Remove label from chart.
 Remove label from the specified chart version.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -949,7 +933,6 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsidDelete(ctx co
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -996,32 +979,31 @@ func (a *ProductsApiService) ChartreporepoChartsnameversionLabelsidDelete(ctx co
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get system configurations.
-This endpoint is for retrieving system configurations that only provides for admin user. 
+This endpoint is for retrieving system configurations that only provides for admin user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return ConfigurationsResponse
 */
 func (a *ProductsApiService) ConfigurationsGet(ctx context.Context) (ConfigurationsResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue ConfigurationsResponse
 	)
 
@@ -1067,38 +1049,38 @@ func (a *ProductsApiService) ConfigurationsGet(ctx context.Context) (Configurati
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ConfigurationsResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Modify system configurations.
-This endpoint is for modifying system configurations that only provides for admin user. 
+This endpoint is for modifying system configurations that only provides for admin user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param configurations The configuration map can contain a subset of the attributes of the schema, which are to be updated.
 
@@ -1110,7 +1092,6 @@ func (a *ProductsApiService) ConfigurationsPut(ctx context.Context, configuratio
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1155,22 +1136,21 @@ func (a *ProductsApiService) ConfigurationsPut(ctx context.Context, configuratio
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Reset system configurations.
-Reset system configurations from environment variables. Can only be accessed by admin user. 
+Reset system configurations from environment variables. Can only be accessed by admin user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 
@@ -1181,7 +1161,6 @@ func (a *ProductsApiService) ConfigurationsResetPost(ctx context.Context) (*http
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1224,22 +1203,21 @@ func (a *ProductsApiService) ConfigurationsResetPost(ctx context.Context) (*http
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Test connection and authentication with email server.
-Test connection and authentication with email server.  
+Test connection and authentication with email server.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *EmailPingPostOpts - Optional Parameters:
      * @param "Settings" (optional.Interface of EmailServerSetting) -  Email server settings, if some of the settings are not assigned, they will be read from system configuration.
@@ -1247,7 +1225,7 @@ Test connection and authentication with email server.
 
 */
 
-type EmailPingPostOpts struct { 
+type EmailPingPostOpts struct {
 	Settings optional.Interface
 }
 
@@ -1257,7 +1235,6 @@ func (a *ProductsApiService) EmailPingPost(ctx context.Context, localVarOptional
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1286,10 +1263,10 @@ func (a *ProductsApiService) EmailPingPost(ctx context.Context, localVarOptional
 	}
 	// body params
 	if localVarOptionals != nil && localVarOptionals.Settings.IsSet() {
-		
+
 		localVarOptionalSettings, localVarOptionalSettingsok := localVarOptionals.Settings.Value().(EmailServerSetting)
 		if !localVarOptionalSettingsok {
-				return nil, reportError("settings should be EmailServerSetting")
+			return nil, reportError("settings should be EmailServerSetting")
 		}
 		localVarPostBody = &localVarOptionalSettings
 	}
@@ -1309,22 +1286,21 @@ func (a *ProductsApiService) EmailPingPost(ctx context.Context, localVarOptional
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Sync repositories from registry to DB.
-This endpoint is for syncing all repositories of registry with database.  
+This endpoint is for syncing all repositories of registry with database.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 
@@ -1335,7 +1311,6 @@ func (a *ProductsApiService) InternalSyncregistryPost(ctx context.Context) (*htt
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1378,22 +1353,21 @@ func (a *ProductsApiService) InternalSyncregistryPost(ctx context.Context) (*htt
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService List filters jobs according to the policy and repository
-This endpoint let user list filters jobs according to the policy and repository. (if start_time and end_time are both null, list jobs of last 10 days) 
+This endpoint let user list filters jobs according to the policy and repository. (if start_time and end_time are both null, list jobs of last 10 days)
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param policyId The ID of the policy that triggered this job.
  * @param optional nil or *JobsReplicationGetOpts - Optional Parameters:
@@ -1409,23 +1383,23 @@ This endpoint let user list filters jobs according to the policy and repository.
 @return []JobStatus
 */
 
-type JobsReplicationGetOpts struct { 
-	OpUuid optional.String
-	Num optional.Int32
-	EndTime optional.Int64
-	StartTime optional.Int64
+type JobsReplicationGetOpts struct {
+	OpUuid     optional.String
+	Num        optional.Int32
+	EndTime    optional.Int64
+	StartTime  optional.Int64
 	Repository optional.String
-	Status optional.String
-	Page optional.Int32
-	PageSize optional.Int32
+	Status     optional.String
+	Page       optional.Int32
+	PageSize   optional.Int32
 }
 
 func (a *ProductsApiService) JobsReplicationGet(ctx context.Context, policyId int32, localVarOptionals *JobsReplicationGetOpts) ([]JobStatus, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []JobStatus
 	)
 
@@ -1496,38 +1470,38 @@ func (a *ProductsApiService) JobsReplicationGet(ctx context.Context, policyId in
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []JobStatus
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete specific ID job.
-This endpoint is aimed to remove specific ID job from jobservice. 
+This endpoint is aimed to remove specific ID job from jobservice.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Delete job ID.
 
@@ -1539,7 +1513,6 @@ func (a *ProductsApiService) JobsReplicationIdDelete(ctx context.Context, id int
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1583,22 +1556,21 @@ func (a *ProductsApiService) JobsReplicationIdDelete(ctx context.Context, id int
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get job logs.
-This endpoint let user search job logs filtered by specific ID. 
+This endpoint let user search job logs filtered by specific ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Relevant job ID
 
@@ -1610,7 +1582,6 @@ func (a *ProductsApiService) JobsReplicationIdLogGet(ctx context.Context, id int
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1654,22 +1625,21 @@ func (a *ProductsApiService) JobsReplicationIdLogGet(ctx context.Context, id int
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update status of jobs. Only stop is supported for now.
-The endpoint is used to stop the replication jobs of a policy. 
+The endpoint is used to stop the replication jobs of a policy.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param policyinfo The policy ID and status.
 
@@ -1681,7 +1651,6 @@ func (a *ProductsApiService) JobsReplicationPut(ctx context.Context, policyinfo 
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1726,22 +1695,21 @@ func (a *ProductsApiService) JobsReplicationPut(ctx context.Context, policyinfo 
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get job logs.
-This endpoint let user get scan job logs filtered by specific ID. 
+This endpoint let user get scan job logs filtered by specific ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Relevant job ID
 
@@ -1753,7 +1721,6 @@ func (a *ProductsApiService) JobsScanIdLogGet(ctx context.Context, id int64) (*h
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1797,22 +1764,21 @@ func (a *ProductsApiService) JobsScanIdLogGet(ctx context.Context, id int64) (*h
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService List labels according to the query strings.
-This endpoint let user list labels by name, scope and project_id 
+This endpoint let user list labels by name, scope and project_id
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param scope The label scope. Valid values are g and p. g for global labels and p for project labels.
  * @param optional nil or *LabelsGetOpts - Optional Parameters:
@@ -1824,19 +1790,19 @@ This endpoint let user list labels by name, scope and project_id
 @return []Label
 */
 
-type LabelsGetOpts struct { 
-	Name optional.String
+type LabelsGetOpts struct {
+	Name      optional.String
 	ProjectId optional.Int64
-	Page optional.Int32
-	PageSize optional.Int32
+	Page      optional.Int32
+	PageSize  optional.Int32
 }
 
 func (a *ProductsApiService) LabelsGet(ctx context.Context, scope string, localVarOptionals *LabelsGetOpts) ([]Label, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []Label
 	)
 
@@ -1895,38 +1861,38 @@ func (a *ProductsApiService) LabelsGet(ctx context.Context, scope string, localV
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []Label
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete the label specified by ID.
-Delete the label specified by ID. 
+Delete the label specified by ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Label ID
 
@@ -1938,7 +1904,6 @@ func (a *ProductsApiService) LabelsIdDelete(ctx context.Context, id int64) (*htt
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -1982,22 +1947,21 @@ func (a *ProductsApiService) LabelsIdDelete(ctx context.Context, id int64) (*htt
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get the label specified by ID.
-This endpoint let user get the label by specific ID. 
+This endpoint let user get the label by specific ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Label ID
 
@@ -2005,10 +1969,10 @@ This endpoint let user get the label by specific ID.
 */
 func (a *ProductsApiService) LabelsIdGet(ctx context.Context, id int64) (Label, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue Label
 	)
 
@@ -2055,38 +2019,38 @@ func (a *ProductsApiService) LabelsIdGet(ctx context.Context, id int64) (Label, 
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v Label
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update the label properties.
-This endpoint let user update label properties. 
+This endpoint let user update label properties.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Label ID
  * @param label The updated label json object.
@@ -2099,7 +2063,6 @@ func (a *ProductsApiService) LabelsIdPut(ctx context.Context, id int64, label La
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -2145,22 +2108,21 @@ func (a *ProductsApiService) LabelsIdPut(ctx context.Context, id int64, label La
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get the resources that the label is referenced by.
-This endpoint let user get the resources that the label is referenced by. Only the replication policies are returned for now. 
+This endpoint let user get the resources that the label is referenced by. Only the replication policies are returned for now.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Label ID
 
@@ -2168,10 +2130,10 @@ This endpoint let user get the resources that the label is referenced by. Only t
 */
 func (a *ProductsApiService) LabelsIdResourcesGet(ctx context.Context, id int64) (Resource, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue Resource
 	)
 
@@ -2218,38 +2180,38 @@ func (a *ProductsApiService) LabelsIdResourcesGet(ctx context.Context, id int64)
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v Resource
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Post creates a label
-This endpoint let user creates a label. 
+This endpoint let user creates a label.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param label The json object of label.
 
@@ -2261,7 +2223,6 @@ func (a *ProductsApiService) LabelsPost(ctx context.Context, label Label) (*http
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -2306,22 +2267,21 @@ func (a *ProductsApiService) LabelsPost(ctx context.Context, label Label) (*http
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Search available ldap groups.
-This endpoint searches the available ldap groups based on related configuration parameters. support to search by groupname or groupdn. 
+This endpoint searches the available ldap groups based on related configuration parameters. support to search by groupname or groupdn.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *LdapGroupsSearchGetOpts - Optional Parameters:
      * @param "Groupname" (optional.String) -  Ldap group name
@@ -2330,17 +2290,17 @@ This endpoint searches the available ldap groups based on related configuration 
 @return []UserGroup
 */
 
-type LdapGroupsSearchGetOpts struct { 
+type LdapGroupsSearchGetOpts struct {
 	Groupname optional.String
-	Groupdn optional.String
+	Groupdn   optional.String
 }
 
 func (a *ProductsApiService) LdapGroupsSearchGet(ctx context.Context, localVarOptionals *LdapGroupsSearchGetOpts) ([]UserGroup, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []UserGroup
 	)
 
@@ -2392,38 +2352,38 @@ func (a *ProductsApiService) LdapGroupsSearchGet(ctx context.Context, localVarOp
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []UserGroup
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Ping available ldap service.
-This endpoint ping the available ldap service for test related configuration parameters.  
+This endpoint ping the available ldap service for test related configuration parameters.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *LdapPingPostOpts - Optional Parameters:
      * @param "Ldapconf" (optional.Interface of LdapConf) -  ldap configuration. support input ldap service configuration. If it&#39;s a empty request, will load current configuration from the system.
@@ -2431,7 +2391,7 @@ This endpoint ping the available ldap service for test related configuration par
 
 */
 
-type LdapPingPostOpts struct { 
+type LdapPingPostOpts struct {
 	Ldapconf optional.Interface
 }
 
@@ -2441,7 +2401,6 @@ func (a *ProductsApiService) LdapPingPost(ctx context.Context, localVarOptionals
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -2470,10 +2429,10 @@ func (a *ProductsApiService) LdapPingPost(ctx context.Context, localVarOptionals
 	}
 	// body params
 	if localVarOptionals != nil && localVarOptionals.Ldapconf.IsSet() {
-		
+
 		localVarOptionalLdapconf, localVarOptionalLdapconfok := localVarOptionals.Ldapconf.Value().(LdapConf)
 		if !localVarOptionalLdapconfok {
-				return nil, reportError("ldapconf should be LdapConf")
+			return nil, reportError("ldapconf should be LdapConf")
 		}
 		localVarPostBody = &localVarOptionalLdapconf
 	}
@@ -2493,22 +2452,21 @@ func (a *ProductsApiService) LdapPingPost(ctx context.Context, localVarOptionals
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Import selected available ldap users.
-This endpoint adds the selected available ldap users to harbor based on related configuration parameters from the system. System will try to guess the user email address and realname, add to harbor user information.  If have errors when import user, will return the list of importing failed uid and the failed reason. 
+This endpoint adds the selected available ldap users to harbor based on related configuration parameters from the system. System will try to guess the user email address and realname, add to harbor user information.  If have errors when import user, will return the list of importing failed uid and the failed reason.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param uidList The uid listed for importing. This list will check users validity of ldap service based on configuration from the system.
 
@@ -2520,7 +2478,6 @@ func (a *ProductsApiService) LdapUsersImportPost(ctx context.Context, uidList Ld
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -2565,33 +2522,32 @@ func (a *ProductsApiService) LdapUsersImportPost(ctx context.Context, uidList Ld
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 404 {
 			var v []LdapFailedImportUsers
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarHttpResponse, newErr
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Search available ldap users.
-This endpoint searches the available ldap users based on related configuration parameters. Support searched by input ladp configuration, load configuration from the system and specific filter. 
+This endpoint searches the available ldap users based on related configuration parameters. Support searched by input ladp configuration, load configuration from the system and specific filter.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *LdapUsersSearchGetOpts - Optional Parameters:
      * @param "Username" (optional.String) -  Registered user ID
@@ -2599,16 +2555,16 @@ This endpoint searches the available ldap users based on related configuration p
 @return []LdapUsers
 */
 
-type LdapUsersSearchGetOpts struct { 
+type LdapUsersSearchGetOpts struct {
 	Username optional.String
 }
 
 func (a *ProductsApiService) LdapUsersSearchGet(ctx context.Context, localVarOptionals *LdapUsersSearchGetOpts) ([]LdapUsers, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []LdapUsers
 	)
 
@@ -2657,38 +2613,38 @@ func (a *ProductsApiService) LdapUsersSearchGet(ctx context.Context, localVarOpt
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []LdapUsers
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get recent logs of the projects which the user is a member of
-This endpoint let user see the recent operation logs of the projects which he is member of  
+This endpoint let user see the recent operation logs of the projects which he is member of
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *LogsGetOpts - Optional Parameters:
      * @param "Username" (optional.String) -  Username of the operator.
@@ -2703,23 +2659,23 @@ This endpoint let user see the recent operation logs of the projects which he is
 @return []AccessLog
 */
 
-type LogsGetOpts struct { 
-	Username optional.String
-	Repository optional.String
-	Tag optional.String
-	Operation optional.String
+type LogsGetOpts struct {
+	Username       optional.String
+	Repository     optional.String
+	Tag            optional.String
+	Operation      optional.String
 	BeginTimestamp optional.String
-	EndTimestamp optional.String
-	Page optional.Int32
-	PageSize optional.Int32
+	EndTimestamp   optional.String
+	Page           optional.Int32
+	PageSize       optional.Int32
 }
 
 func (a *ProductsApiService) LogsGet(ctx context.Context, localVarOptionals *LogsGetOpts) ([]AccessLog, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []AccessLog
 	)
 
@@ -2789,38 +2745,38 @@ func (a *ProductsApiService) LogsGet(ctx context.Context, localVarOptionals *Log
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []AccessLog
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService List filters policies by name and project_id
-This endpoint let user list filters policies by name and project_id, if name and project_id are nil, list returns all policies 
+This endpoint let user list filters policies by name and project_id, if name and project_id are nil, list returns all policies
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *PoliciesReplicationGetOpts - Optional Parameters:
      * @param "Name" (optional.String) -  The replication&#39;s policy name.
@@ -2831,19 +2787,19 @@ This endpoint let user list filters policies by name and project_id, if name and
 @return []RepPolicy
 */
 
-type PoliciesReplicationGetOpts struct { 
-	Name optional.String
+type PoliciesReplicationGetOpts struct {
+	Name      optional.String
 	ProjectId optional.Int64
-	Page optional.Int32
-	PageSize optional.Int32
+	Page      optional.Int32
+	PageSize  optional.Int32
 }
 
 func (a *ProductsApiService) PoliciesReplicationGet(ctx context.Context, localVarOptionals *PoliciesReplicationGetOpts) ([]RepPolicy, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []RepPolicy
 	)
 
@@ -2901,38 +2857,38 @@ func (a *ProductsApiService) PoliciesReplicationGet(ctx context.Context, localVa
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []RepPolicy
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete the replication policy specified by ID.
-Delete the replication policy specified by ID. 
+Delete the replication policy specified by ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id Replication policy ID
 
@@ -2944,7 +2900,6 @@ func (a *ProductsApiService) PoliciesReplicationIdDelete(ctx context.Context, id
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -2988,22 +2943,21 @@ func (a *ProductsApiService) PoliciesReplicationIdDelete(ctx context.Context, id
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get replication policy.
-This endpoint let user search replication policy by specific ID. 
+This endpoint let user search replication policy by specific ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id policy ID
 
@@ -3011,10 +2965,10 @@ This endpoint let user search replication policy by specific ID.
 */
 func (a *ProductsApiService) PoliciesReplicationIdGet(ctx context.Context, id int64) (RepPolicy, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue RepPolicy
 	)
 
@@ -3061,38 +3015,38 @@ func (a *ProductsApiService) PoliciesReplicationIdGet(ctx context.Context, id in
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RepPolicy
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Put modifies name, description, target and enablement of policy.
-This endpoint let user update policy name, description, target and enablement. 
+This endpoint let user update policy name, description, target and enablement.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id policy ID
  * @param policyupdate Updated properties of the replication policy.
@@ -3105,7 +3059,6 @@ func (a *ProductsApiService) PoliciesReplicationIdPut(ctx context.Context, id in
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -3151,22 +3104,21 @@ func (a *ProductsApiService) PoliciesReplicationIdPut(ctx context.Context, id in
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Post creates a policy
-This endpoint let user creates a policy, and if it is enabled, the replication will be triggered right now. 
+This endpoint let user creates a policy, and if it is enabled, the replication will be triggered right now.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param policyinfo Create new policy.
 
@@ -3178,7 +3130,6 @@ func (a *ProductsApiService) PoliciesReplicationPost(ctx context.Context, policy
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -3223,22 +3174,21 @@ func (a *ProductsApiService) PoliciesReplicationPost(ctx context.Context, policy
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService List projects
-This endpoint returns all projects created by Harbor, and can be filtered by project name. 
+This endpoint returns all projects created by Harbor, and can be filtered by project name.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *ProjectsGetOpts - Optional Parameters:
      * @param "Name" (optional.String) -  The name of project.
@@ -3250,20 +3200,20 @@ This endpoint returns all projects created by Harbor, and can be filtered by pro
 @return []Project
 */
 
-type ProjectsGetOpts struct { 
-	Name optional.String
-	Public optional.Bool
-	Owner optional.String
-	Page optional.Int32
+type ProjectsGetOpts struct {
+	Name     optional.String
+	Public   optional.Bool
+	Owner    optional.String
+	Page     optional.Int32
 	PageSize optional.Int32
 }
 
 func (a *ProductsApiService) ProjectsGet(ctx context.Context, localVarOptionals *ProjectsGetOpts) ([]Project, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []Project
 	)
 
@@ -3324,38 +3274,38 @@ func (a *ProductsApiService) ProjectsGet(ctx context.Context, localVarOptionals 
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []Project
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Check if the project name user provided already exists.
-This endpoint is used to check if the project name user provided already exist. 
+This endpoint is used to check if the project name user provided already exist.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectName Project name for checking exists.
 
@@ -3367,7 +3317,6 @@ func (a *ProductsApiService) ProjectsHead(ctx context.Context, projectName strin
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -3411,22 +3360,21 @@ func (a *ProductsApiService) ProjectsHead(ctx context.Context, projectName strin
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Create a new project.
-This endpoint is for user to create a new project. 
+This endpoint is for user to create a new project.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param project New created project.
 
@@ -3438,7 +3386,6 @@ func (a *ProductsApiService) ProjectsPost(ctx context.Context, project ProjectRe
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -3483,22 +3430,21 @@ func (a *ProductsApiService) ProjectsPost(ctx context.Context, project ProjectRe
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete project by projectID
-This endpoint is aimed to delete project by project ID. 
+This endpoint is aimed to delete project by project ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID of project which will be deleted.
 
@@ -3510,7 +3456,6 @@ func (a *ProductsApiService) ProjectsProjectIdDelete(ctx context.Context, projec
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -3554,22 +3499,21 @@ func (a *ProductsApiService) ProjectsProjectIdDelete(ctx context.Context, projec
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Return specific project detail infomation
-This endpoint returns specific project information by project ID. 
+This endpoint returns specific project information by project ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID for filtering results.
 
@@ -3577,10 +3521,10 @@ This endpoint returns specific project information by project ID.
 */
 func (a *ProductsApiService) ProjectsProjectIdGet(ctx context.Context, projectId int64) (Project, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue Project
 	)
 
@@ -3627,38 +3571,38 @@ func (a *ProductsApiService) ProjectsProjectIdGet(ctx context.Context, projectId
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v Project
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get access logs accompany with a relevant project.
-This endpoint let user search access logs filtered by operations and date time ranges. 
+This endpoint let user search access logs filtered by operations and date time ranges.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Relevant project ID
  * @param optional nil or *ProjectsProjectIdLogsGetOpts - Optional Parameters:
@@ -3674,23 +3618,23 @@ This endpoint let user search access logs filtered by operations and date time r
 @return []AccessLog
 */
 
-type ProjectsProjectIdLogsGetOpts struct { 
-	Username optional.String
-	Repository optional.String
-	Tag optional.String
-	Operation optional.String
+type ProjectsProjectIdLogsGetOpts struct {
+	Username       optional.String
+	Repository     optional.String
+	Tag            optional.String
+	Operation      optional.String
 	BeginTimestamp optional.String
-	EndTimestamp optional.String
-	Page optional.Int32
-	PageSize optional.Int32
+	EndTimestamp   optional.String
+	Page           optional.Int32
+	PageSize       optional.Int32
 }
 
 func (a *ProductsApiService) ProjectsProjectIdLogsGet(ctx context.Context, projectId int64, localVarOptionals *ProjectsProjectIdLogsGetOpts) ([]AccessLog, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []AccessLog
 	)
 
@@ -3761,36 +3705,36 @@ func (a *ProductsApiService) ProjectsProjectIdLogsGet(ctx context.Context, proje
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []AccessLog
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get all project member information
 Get all project member information
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3801,16 +3745,16 @@ Get all project member information
 @return []ProjectMemberEntity
 */
 
-type ProjectsProjectIdMembersGetOpts struct { 
+type ProjectsProjectIdMembersGetOpts struct {
 	Entityname optional.String
 }
 
 func (a *ProductsApiService) ProjectsProjectIdMembersGet(ctx context.Context, projectId int64, localVarOptionals *ProjectsProjectIdMembersGetOpts) ([]ProjectMemberEntity, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []ProjectMemberEntity
 	)
 
@@ -3860,36 +3804,36 @@ func (a *ProductsApiService) ProjectsProjectIdMembersGet(ctx context.Context, pr
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []ProjectMemberEntity
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete project member
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Relevant project ID.
@@ -3903,7 +3847,6 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidDelete(ctx context.Conte
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -3948,20 +3891,19 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidDelete(ctx context.Conte
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get the project member information
 Get the project member information
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -3972,10 +3914,10 @@ Get the project member information
 */
 func (a *ProductsApiService) ProjectsProjectIdMembersMidGet(ctx context.Context, projectId int64, mid int64) (ProjectMemberEntity, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue ProjectMemberEntity
 	)
 
@@ -4023,48 +3965,48 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidGet(ctx context.Context,
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ProjectMemberEntity
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update project member
 Update project member relationship
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Relevant project ID.
  * @param mid Member ID.
  * @param optional nil or *ProjectsProjectIdMembersMidPutOpts - Optional Parameters:
-     * @param "Role" (optional.Interface of RoleRequest) - 
+     * @param "Role" (optional.Interface of RoleRequest) -
 
 
 */
 
-type ProjectsProjectIdMembersMidPutOpts struct { 
+type ProjectsProjectIdMembersMidPutOpts struct {
 	Role optional.Interface
 }
 
@@ -4074,7 +4016,6 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidPut(ctx context.Context,
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -4105,10 +4046,10 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidPut(ctx context.Context,
 	}
 	// body params
 	if localVarOptionals != nil && localVarOptionals.Role.IsSet() {
-		
+
 		localVarOptionalRole, localVarOptionalRoleok := localVarOptionals.Role.Value().(RoleRequest)
 		if !localVarOptionalRoleok {
-				return nil, reportError("role should be RoleRequest")
+			return nil, reportError("role should be RoleRequest")
 		}
 		localVarPostBody = &localVarOptionalRole
 	}
@@ -4128,31 +4069,30 @@ func (a *ProductsApiService) ProjectsProjectIdMembersMidPut(ctx context.Context,
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Create project member
-Create project member relationship, the member can be one of the user_member and group_member,  The user_member need to specify user_id or username. If the user already exist in harbor DB, specify the user_id,  If does not exist in harbor DB, it will SearchAndOnBoard the user. The group_member need to specify id or ldap_group_dn. If the group already exist in harbor DB. specify the user group&#39;s id,  If does not exist, it will SearchAndOnBoard the group. 
+Create project member relationship, the member can be one of the user_member and group_member,  The user_member need to specify user_id or username. If the user already exist in harbor DB, specify the user_id,  If does not exist in harbor DB, it will SearchAndOnBoard the user. The group_member need to specify id or ldap_group_dn. If the group already exist in harbor DB. specify the user group&#39;s id,  If does not exist, it will SearchAndOnBoard the group.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Relevant project ID.
  * @param optional nil or *ProjectsProjectIdMembersPostOpts - Optional Parameters:
-     * @param "ProjectMember" (optional.Interface of ProjectMember) - 
+     * @param "ProjectMember" (optional.Interface of ProjectMember) -
 
 
 */
 
-type ProjectsProjectIdMembersPostOpts struct { 
+type ProjectsProjectIdMembersPostOpts struct {
 	ProjectMember optional.Interface
 }
 
@@ -4162,7 +4102,6 @@ func (a *ProductsApiService) ProjectsProjectIdMembersPost(ctx context.Context, p
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -4192,10 +4131,10 @@ func (a *ProductsApiService) ProjectsProjectIdMembersPost(ctx context.Context, p
 	}
 	// body params
 	if localVarOptionals != nil && localVarOptionals.ProjectMember.IsSet() {
-		
+
 		localVarOptionalProjectMember, localVarOptionalProjectMemberok := localVarOptionals.ProjectMember.Value().(ProjectMember)
 		if !localVarOptionalProjectMemberok {
-				return nil, reportError("projectMember should be ProjectMember")
+			return nil, reportError("projectMember should be ProjectMember")
 		}
 		localVarPostBody = &localVarOptionalProjectMember
 	}
@@ -4215,22 +4154,21 @@ func (a *ProductsApiService) ProjectsProjectIdMembersPost(ctx context.Context, p
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get project metadata.
-This endpoint returns metadata of the project specified by project ID. 
+This endpoint returns metadata of the project specified by project ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId The ID of project.
 
@@ -4238,10 +4176,10 @@ This endpoint returns metadata of the project specified by project ID.
 */
 func (a *ProductsApiService) ProjectsProjectIdMetadatasGet(ctx context.Context, projectId int64) (ProjectMetadata, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue ProjectMetadata
 	)
 
@@ -4288,38 +4226,38 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasGet(ctx context.Context, 
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ProjectMetadata
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete metadata of a project
-This endpoint is aimed to delete metadata of a project. 
+This endpoint is aimed to delete metadata of a project.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId The ID of project.
  * @param metaName The name of metadat.
@@ -4332,7 +4270,6 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNameDelete(ctx contex
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -4377,22 +4314,21 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNameDelete(ctx contex
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get project metadata
-This endpoint returns specified metadata of a project. 
+This endpoint returns specified metadata of a project.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Project ID for filtering results.
  * @param metaName The name of metadat.
@@ -4401,10 +4337,10 @@ This endpoint returns specified metadata of a project.
 */
 func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNameGet(ctx context.Context, projectId int64, metaName string) (ProjectMetadata, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue ProjectMetadata
 	)
 
@@ -4452,38 +4388,38 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNameGet(ctx context.C
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ProjectMetadata
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update metadata of a project.
-This endpoint is aimed to update the metadata of a project. 
+This endpoint is aimed to update the metadata of a project.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId The ID of project.
  * @param metaName The name of metadat.
@@ -4496,7 +4432,6 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNamePut(ctx context.C
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -4541,22 +4476,21 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasMetaNamePut(ctx context.C
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Add metadata for the project.
-This endpoint is aimed to add metadata of a project. 
+This endpoint is aimed to add metadata of a project.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Selected project ID.
  * @param metadata The metadata of project.
@@ -4569,7 +4503,6 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasPost(ctx context.Context,
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -4615,22 +4548,21 @@ func (a *ProductsApiService) ProjectsProjectIdMetadatasPost(ctx context.Context,
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update properties for a selected project.
-This endpoint is aimed to update the properties of a project. 
+This endpoint is aimed to update the properties of a project.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Selected project ID.
  * @param project Updates of project.
@@ -4643,7 +4575,6 @@ func (a *ProductsApiService) ProjectsProjectIdPut(ctx context.Context, projectId
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -4689,22 +4620,21 @@ func (a *ProductsApiService) ProjectsProjectIdPut(ctx context.Context, projectId
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Trigger the replication according to the specified policy.
-This endpoint is used to trigger a replication. 
+This endpoint is used to trigger a replication.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param policyID The ID of replication policy.
 
@@ -4712,10 +4642,10 @@ This endpoint is used to trigger a replication.
 */
 func (a *ProductsApiService) ReplicationsPost(ctx context.Context, policyID Replication) (ReplicationResponse, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Post")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Post")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue ReplicationResponse
 	)
 
@@ -4763,43 +4693,43 @@ func (a *ProductsApiService) ReplicationsPost(ctx context.Context, policyID Repl
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v ReplicationResponse
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get repositories accompany with relevant project and repo name.
-This endpoint lets user search repositories accompanying with relevant project ID and repo name. Repositories can be sorted by repo name, creation_time, update_time in either ascending or descending order. 
+This endpoint lets user search repositories accompanying with relevant project ID and repo name. Repositories can be sorted by repo name, creation_time, update_time in either ascending or descending order.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param projectId Relevant project ID.
  * @param optional nil or *RepositoriesGetOpts - Optional Parameters:
      * @param "Q" (optional.String) -  Repo name for filtering results.
-     * @param "Sort" (optional.String) -  Sort method, valid values include: &#39;name&#39;, &#39;-name&#39;, &#39;creation_time&#39;, &#39;-creation_time&#39;, &#39;update_time&#39;, &#39;-update_time&#39;. Here &#39;-&#39; stands for descending order. 
+     * @param "Sort" (optional.String) -  Sort method, valid values include: &#39;name&#39;, &#39;-name&#39;, &#39;creation_time&#39;, &#39;-creation_time&#39;, &#39;update_time&#39;, &#39;-update_time&#39;. Here &#39;-&#39; stands for descending order.
      * @param "LabelId" (optional.Int32) -  The ID of label used to filter the result.
      * @param "Page" (optional.Int32) -  The page nubmer, default is 1.
      * @param "PageSize" (optional.Int32) -  The size of per page, default is 10, maximum is 100.
@@ -4807,20 +4737,20 @@ This endpoint lets user search repositories accompanying with relevant project I
 @return []Repository
 */
 
-type RepositoriesGetOpts struct { 
-	Q optional.String
-	Sort optional.String
-	LabelId optional.Int32
-	Page optional.Int32
+type RepositoriesGetOpts struct {
+	Q        optional.String
+	Sort     optional.String
+	LabelId  optional.Int32
+	Page     optional.Int32
 	PageSize optional.Int32
 }
 
 func (a *ProductsApiService) RepositoriesGet(ctx context.Context, projectId int32, localVarOptionals *RepositoriesGetOpts) ([]Repository, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []Repository
 	)
 
@@ -4882,38 +4812,38 @@ func (a *ProductsApiService) RepositoriesGet(ctx context.Context, projectId int3
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []Repository
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete a repository.
-This endpoint let user delete a repository with name. 
+This endpoint let user delete a repository with name.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository which will be deleted.
 
@@ -4925,7 +4855,6 @@ func (a *ProductsApiService) RepositoriesRepoNameDelete(ctx context.Context, rep
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -4969,22 +4898,21 @@ func (a *ProductsApiService) RepositoriesRepoNameDelete(ctx context.Context, rep
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get labels of a repository.
-Get labels of a repository specified by the repo_name. 
+Get labels of a repository specified by the repo_name.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository.
 
@@ -4992,10 +4920,10 @@ Get labels of a repository specified by the repo_name.
 */
 func (a *ProductsApiService) RepositoriesRepoNameLabelsGet(ctx context.Context, repoName string) ([]Label, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []Label
 	)
 
@@ -5042,38 +4970,38 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsGet(ctx context.Context, 
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []Label
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete label from the repository.
-Delete the label from the repository specified by the repo_name. 
+Delete the label from the repository specified by the repo_name.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository.
  * @param labelId The ID of label.
@@ -5086,7 +5014,6 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsLabelIdDelete(ctx context
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -5131,22 +5058,21 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsLabelIdDelete(ctx context
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Add a label to the repository.
-Add a label to the repository. 
+Add a label to the repository.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository.
  * @param label Only the ID property is required.
@@ -5159,7 +5085,6 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsPost(ctx context.Context,
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -5205,22 +5130,21 @@ func (a *ProductsApiService) RepositoriesRepoNameLabelsPost(ctx context.Context,
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update description of the repository.
-This endpoint is used to update description of the repository. 
+This endpoint is used to update description of the repository.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository which will be deleted.
  * @param description The description of the repository.
@@ -5233,7 +5157,6 @@ func (a *ProductsApiService) RepositoriesRepoNamePut(ctx context.Context, repoNa
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -5279,22 +5202,21 @@ func (a *ProductsApiService) RepositoriesRepoNamePut(ctx context.Context, repoNa
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get signature information of a repository
-This endpoint aims to retrieve signature information of a repository, the data is from the nested notary instance of Harbor. If the repository does not have any signature information in notary, this API will return an empty list with response code 200, instead of 404 
+This endpoint aims to retrieve signature information of a repository, the data is from the nested notary instance of Harbor. If the repository does not have any signature information in notary, this API will return an empty list with response code 200, instead of 404
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName repository name.
 
@@ -5302,10 +5224,10 @@ This endpoint aims to retrieve signature information of a repository, the data i
 */
 func (a *ProductsApiService) RepositoriesRepoNameSignaturesGet(ctx context.Context, repoName string) ([]RepoSignature, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []RepoSignature
 	)
 
@@ -5352,38 +5274,38 @@ func (a *ProductsApiService) RepositoriesRepoNameSignaturesGet(ctx context.Conte
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []RepoSignature
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get tags of a relevant repository.
-This endpoint aims to retrieve tags from a relevant repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned. 
+This endpoint aims to retrieve tags from a relevant repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName Relevant repository name.
  * @param optional nil or *RepositoriesRepoNameTagsGetOpts - Optional Parameters:
@@ -5392,16 +5314,16 @@ This endpoint aims to retrieve tags from a relevant repository. If deployed with
 @return []DetailedTag
 */
 
-type RepositoriesRepoNameTagsGetOpts struct { 
+type RepositoriesRepoNameTagsGetOpts struct {
 	LabelIds optional.String
 }
 
 func (a *ProductsApiService) RepositoriesRepoNameTagsGet(ctx context.Context, repoName string, localVarOptionals *RepositoriesRepoNameTagsGetOpts) ([]DetailedTag, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []DetailedTag
 	)
 
@@ -5451,38 +5373,38 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsGet(ctx context.Context, re
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []DetailedTag
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Retag an image
-This endpoint tags an existing image with another tag in this repo, source images can be in different repos or projects. 
+This endpoint tags an existing image with another tag in this repo, source images can be in different repos or projects.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName Relevant repository name.
  * @param request Request to give source image and target tag.
@@ -5495,7 +5417,6 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsPost(ctx context.Context, r
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -5541,22 +5462,21 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsPost(ctx context.Context, r
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete a tag in a repository.
-This endpoint let user delete tags with repo name and tag. 
+This endpoint let user delete tags with repo name and tag.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository which will be deleted.
  * @param tag Tag of a repository.
@@ -5569,7 +5489,6 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagDelete(ctx context.Conte
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -5614,22 +5533,21 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagDelete(ctx context.Conte
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get the tag of the repository.
-This endpoint aims to retrieve the tag of the repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned. 
+This endpoint aims to retrieve the tag of the repository. If deployed with Notary, the signature property of response represents whether the image is singed or not. If the property is null, the image is unsigned.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName Relevant repository name.
  * @param tag Tag of the repository.
@@ -5638,10 +5556,10 @@ This endpoint aims to retrieve the tag of the repository. If deployed with Notar
 */
 func (a *ProductsApiService) RepositoriesRepoNameTagsTagGet(ctx context.Context, repoName string, tag string) (DetailedTag, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue DetailedTag
 	)
 
@@ -5689,38 +5607,38 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagGet(ctx context.Context,
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v DetailedTag
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get labels of an image.
-Get labels of an image specified by the repo_name and tag. 
+Get labels of an image specified by the repo_name and tag.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository.
  * @param tag The tag of the image.
@@ -5729,10 +5647,10 @@ Get labels of an image specified by the repo_name and tag.
 */
 func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsGet(ctx context.Context, repoName string, tag string) ([]Label, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []Label
 	)
 
@@ -5780,38 +5698,38 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsGet(ctx context.Co
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []Label
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete label from the image.
-Delete the label from the image specified by the repo_name and tag. 
+Delete the label from the image specified by the repo_name and tag.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository.
  * @param tag The tag of the image.
@@ -5825,7 +5743,6 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsLabelIdDelete(ctx 
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -5871,22 +5788,21 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsLabelIdDelete(ctx 
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Add a label to image.
-Add a label to the image. 
+Add a label to the image.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName The name of repository.
  * @param tag The tag of the image.
@@ -5900,7 +5816,6 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsPost(ctx context.C
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -5947,22 +5862,21 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagLabelsPost(ctx context.C
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get manifests of a relevant repository.
-This endpoint aims to retreive manifests from a relevant repository. 
+This endpoint aims to retreive manifests from a relevant repository.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName Repository name
  * @param tag Tag name
@@ -5972,16 +5886,16 @@ This endpoint aims to retreive manifests from a relevant repository.
 @return Manifest
 */
 
-type RepositoriesRepoNameTagsTagManifestGetOpts struct { 
+type RepositoriesRepoNameTagsTagManifestGetOpts struct {
 	Version optional.String
 }
 
 func (a *ProductsApiService) RepositoriesRepoNameTagsTagManifestGet(ctx context.Context, repoName string, tag string, localVarOptionals *RepositoriesRepoNameTagsTagManifestGetOpts) (Manifest, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue Manifest
 	)
 
@@ -6032,38 +5946,38 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagManifestGet(ctx context.
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v Manifest
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Scan the image.
-Trigger jobservice to call Clair API to scan the image identified by the repo_name and tag.  Only project admins have permission to scan images under the project. 
+Trigger jobservice to call Clair API to scan the image identified by the repo_name and tag.  Only project admins have permission to scan images under the project.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName Repository name
  * @param tag Tag name
@@ -6076,7 +5990,6 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagScanPost(ctx context.Con
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -6121,22 +6034,21 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagScanPost(ctx context.Con
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get vulnerability details of the image.
-Call Clair API to get the vulnerability based on the previous successful scan. 
+Call Clair API to get the vulnerability based on the previous successful scan.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param repoName Repository name
  * @param tag Tag name
@@ -6145,10 +6057,10 @@ Call Clair API to get the vulnerability based on the previous successful scan.
 */
 func (a *ProductsApiService) RepositoriesRepoNameTagsTagVulnerabilityDetailsGet(ctx context.Context, repoName string, tag string) ([]VulnerabilityItem, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []VulnerabilityItem
 	)
 
@@ -6196,38 +6108,38 @@ func (a *ProductsApiService) RepositoriesRepoNameTagsTagVulnerabilityDetailsGet(
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []VulnerabilityItem
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Scan all images of the registry.
-The server will launch different jobs to scan each image on the regsitry, so this is equivalent to calling  the API to scan the image one by one in background, so there&#39;s no way to track the overall status of the \&quot;scan all\&quot; action.  Only system adim has permission to call this API.   
+The server will launch different jobs to scan each image on the regsitry, so this is equivalent to calling  the API to scan the image one by one in background, so there&#39;s no way to track the overall status of the \&quot;scan all\&quot; action.  Only system adim has permission to call this API.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *RepositoriesScanAllPostOpts - Optional Parameters:
      * @param "ProjectId" (optional.Int32) -  When this parm is set only the images under the project identified by the project_id will be scanned.
@@ -6235,7 +6147,7 @@ The server will launch different jobs to scan each image on the regsitry, so thi
 
 */
 
-type RepositoriesScanAllPostOpts struct { 
+type RepositoriesScanAllPostOpts struct {
 	ProjectId optional.Int32
 }
 
@@ -6245,7 +6157,6 @@ func (a *ProductsApiService) RepositoriesScanAllPost(ctx context.Context, localV
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -6291,22 +6202,21 @@ func (a *ProductsApiService) RepositoriesScanAllPost(ctx context.Context, localV
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get public repositories which are accessed most.
-This endpoint aims to let users see the most popular public repositories 
+This endpoint aims to let users see the most popular public repositories
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *RepositoriesTopGetOpts - Optional Parameters:
      * @param "Count" (optional.Int32) -  The number of the requested public repositories, default is 10 if not provided.
@@ -6314,16 +6224,16 @@ This endpoint aims to let users see the most popular public repositories
 @return []Repository
 */
 
-type RepositoriesTopGetOpts struct { 
+type RepositoriesTopGetOpts struct {
 	Count optional.Int32
 }
 
 func (a *ProductsApiService) RepositoriesTopGet(ctx context.Context, localVarOptionals *RepositoriesTopGetOpts) ([]Repository, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []Repository
 	)
 
@@ -6372,50 +6282,50 @@ func (a *ProductsApiService) RepositoriesTopGet(ctx context.Context, localVarOpt
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []Repository
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Search for projects, repositories and helm charts
-The Search endpoint returns information about the projects ,repositories  and helm charts offered at public status or related to the current logged in user. The response includes the project, repository list and charts in a proper display order. 
+The Search endpoint returns information about the projects ,repositories  and helm charts offered at public status or related to the current logged in user. The response includes the project, repository list and charts in a proper display order.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param q Search parameter for project and repository name.
 
 @return []Search
 */
-func (a *ProductsApiService) SearchGet(ctx context.Context, q string) ([]Search, *http.Response, error) {
+func (a *ProductsApiService) SearchGet(ctx context.Context, q string) (Search, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
-		localVarReturnValue []Search
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
+		localVarReturnValue Search
 	)
 
 	// create path and map variables
@@ -6461,48 +6371,48 @@ func (a *ProductsApiService) SearchGet(ctx context.Context, q string) ([]Search,
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
-			var v []Search
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			var v Search
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get projects number and repositories number relevant to the user
-This endpoint is aimed to statistic all of the projects number and repositories number relevant to the logined user, also the public projects number and repositories number. If the user is admin, he can also get total projects number and total repositories number. 
+This endpoint is aimed to statistic all of the projects number and repositories number relevant to the logined user, also the public projects number and repositories number. If the user is admin, he can also get total projects number and total repositories number.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return StatisticMap
 */
 func (a *ProductsApiService) StatisticsGet(ctx context.Context) (StatisticMap, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue StatisticMap
 	)
 
@@ -6548,36 +6458,36 @@ func (a *ProductsApiService) StatisticsGet(ctx context.Context) (StatisticMap, *
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v StatisticMap
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get gc results.
 This endpoint let user get latest ten gc results.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -6586,10 +6496,10 @@ This endpoint let user get latest ten gc results.
 */
 func (a *ProductsApiService) SystemGcGet(ctx context.Context) ([]GcResult, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []GcResult
 	)
 
@@ -6635,36 +6545,36 @@ func (a *ProductsApiService) SystemGcGet(ctx context.Context) ([]GcResult, *http
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []GcResult
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get gc status.
 This endpoint let user get gc status filtered by specific ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -6674,10 +6584,10 @@ This endpoint let user get gc status filtered by specific ID.
 */
 func (a *ProductsApiService) SystemGcIdGet(ctx context.Context, id int64) ([]GcResult, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []GcResult
 	)
 
@@ -6724,36 +6634,36 @@ func (a *ProductsApiService) SystemGcIdGet(ctx context.Context, id int64) ([]GcR
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []GcResult
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get gc job log.
 This endpoint let user get gc job logs filtered by specific ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -6763,10 +6673,10 @@ This endpoint let user get gc job logs filtered by specific ID.
 */
 func (a *ProductsApiService) SystemGcIdLogGet(ctx context.Context, id int64) (string, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue string
 	)
 
@@ -6813,36 +6723,36 @@ func (a *ProductsApiService) SystemGcIdLogGet(ctx context.Context, id int64) (st
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v string
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get gc&#39;s schedule.
 This endpoint is for get schedule of gc job.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -6851,10 +6761,10 @@ This endpoint is for get schedule of gc job.
 */
 func (a *ProductsApiService) SystemGcScheduleGet(ctx context.Context) ([]GcSchedule, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []GcSchedule
 	)
 
@@ -6900,38 +6810,38 @@ func (a *ProductsApiService) SystemGcScheduleGet(ctx context.Context) ([]GcSched
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []GcSchedule
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Create a gc schedule.
-This endpoint is for update gc schedule. 
+This endpoint is for update gc schedule.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param schedule Updates of gs&#39;s schedule.
 
@@ -6943,7 +6853,6 @@ func (a *ProductsApiService) SystemGcSchedulePost(ctx context.Context, schedule 
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -6988,22 +6897,21 @@ func (a *ProductsApiService) SystemGcSchedulePost(ctx context.Context, schedule 
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update gc&#39;s schedule.
-This endpoint is for update gc schedule. 
+This endpoint is for update gc schedule.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param schedule Updates of gs&#39;s schedule.
 
@@ -7015,7 +6923,6 @@ func (a *ProductsApiService) SystemGcSchedulePut(ctx context.Context, schedule G
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -7060,32 +6967,31 @@ func (a *ProductsApiService) SystemGcSchedulePut(ctx context.Context, schedule G
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get general system info
-This API is for retrieving general system info, this can be called by anonymous request. 
+This API is for retrieving general system info, this can be called by anonymous request.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return GeneralInfo
 */
 func (a *ProductsApiService) SysteminfoGet(ctx context.Context) (GeneralInfo, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue GeneralInfo
 	)
 
@@ -7131,38 +7037,38 @@ func (a *ProductsApiService) SysteminfoGet(ctx context.Context) (GeneralInfo, *h
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v GeneralInfo
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get default root certificate.
-This endpoint is for downloading a default root certificate. 
+This endpoint is for downloading a default root certificate.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 
@@ -7173,7 +7079,6 @@ func (a *ProductsApiService) SysteminfoGetcertGet(ctx context.Context) (*http.Re
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -7216,32 +7121,31 @@ func (a *ProductsApiService) SysteminfoGetcertGet(ctx context.Context) (*http.Re
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get system volume info (total/free size).
-This endpoint is for retrieving system volume info that only provides for admin user. 
+This endpoint is for retrieving system volume info that only provides for admin user.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return SystemInfo
 */
 func (a *ProductsApiService) SysteminfoVolumesGet(ctx context.Context) (SystemInfo, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue SystemInfo
 	)
 
@@ -7287,38 +7191,38 @@ func (a *ProductsApiService) SysteminfoVolumesGet(ctx context.Context) (SystemIn
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v SystemInfo
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService List filters targets by name.
-This endpoint let user list filters targets by name, if name is nil, list returns all targets. 
+This endpoint let user list filters targets by name, if name is nil, list returns all targets.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *TargetsGetOpts - Optional Parameters:
      * @param "Name" (optional.String) -  The replication&#39;s target name.
@@ -7326,16 +7230,16 @@ This endpoint let user list filters targets by name, if name is nil, list return
 @return []RepTarget
 */
 
-type TargetsGetOpts struct { 
+type TargetsGetOpts struct {
 	Name optional.String
 }
 
 func (a *ProductsApiService) TargetsGet(ctx context.Context, localVarOptionals *TargetsGetOpts) ([]RepTarget, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []RepTarget
 	)
 
@@ -7384,38 +7288,38 @@ func (a *ProductsApiService) TargetsGet(ctx context.Context, localVarOptionals *
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []RepTarget
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete specific replication&#39;s target.
-This endpoint is for to delete specific replication&#39;s target. 
+This endpoint is for to delete specific replication&#39;s target.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The replication&#39;s target ID.
 
@@ -7427,7 +7331,6 @@ func (a *ProductsApiService) TargetsIdDelete(ctx context.Context, id int64) (*ht
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -7471,20 +7374,19 @@ func (a *ProductsApiService) TargetsIdDelete(ctx context.Context, id int64) (*ht
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get replication&#39;s target.
 This endpoint is for get specific replication&#39;s target.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -7494,10 +7396,10 @@ This endpoint is for get specific replication&#39;s target.
 */
 func (a *ProductsApiService) TargetsIdGet(ctx context.Context, id int64) (RepTarget, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue RepTarget
 	)
 
@@ -7544,38 +7446,38 @@ func (a *ProductsApiService) TargetsIdGet(ctx context.Context, id int64) (RepTar
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v RepTarget
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService List the target relevant policies.
-This endpoint list policies filter with specific replication&#39;s target ID. 
+This endpoint list policies filter with specific replication&#39;s target ID.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The replication&#39;s target ID.
 
@@ -7583,10 +7485,10 @@ This endpoint list policies filter with specific replication&#39;s target ID.
 */
 func (a *ProductsApiService) TargetsIdPoliciesGet(ctx context.Context, id int64) ([]RepPolicy, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []RepPolicy
 	)
 
@@ -7633,38 +7535,38 @@ func (a *ProductsApiService) TargetsIdPoliciesGet(ctx context.Context, id int64)
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []RepPolicy
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update replication&#39;s target.
-This endpoint is for update specific replication&#39;s target. 
+This endpoint is for update specific replication&#39;s target.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param id The replication&#39;s target ID.
  * @param repoTarget Updates of replication&#39;s target.
@@ -7677,7 +7579,6 @@ func (a *ProductsApiService) TargetsIdPut(ctx context.Context, id int64, repoTar
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -7723,22 +7624,21 @@ func (a *ProductsApiService) TargetsIdPut(ctx context.Context, id int64, repoTar
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Ping validates target.
-This endpoint is for ping validates whether the target is reachable and whether the credential is valid. 
+This endpoint is for ping validates whether the target is reachable and whether the credential is valid.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param target The target object.
 
@@ -7750,7 +7650,6 @@ func (a *ProductsApiService) TargetsPingPost(ctx context.Context, target PingTar
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -7795,22 +7694,21 @@ func (a *ProductsApiService) TargetsPingPost(ctx context.Context, target PingTar
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Create a new replication target.
-This endpoint is for user to create a new replication target. 
+This endpoint is for user to create a new replication target.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param reptarget New created replication target.
 
@@ -7822,7 +7720,6 @@ func (a *ProductsApiService) TargetsPost(ctx context.Context, reptarget RepTarge
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -7867,20 +7764,19 @@ func (a *ProductsApiService) TargetsPost(ctx context.Context, reptarget RepTarge
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get all user groups information
 Get all user groups information
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -7889,10 +7785,10 @@ Get all user groups information
 */
 func (a *ProductsApiService) UsergroupsGet(ctx context.Context) ([]UserGroup, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []UserGroup
 	)
 
@@ -7938,36 +7834,36 @@ func (a *ProductsApiService) UsergroupsGet(ctx context.Context) ([]UserGroup, *h
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []UserGroup
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Delete user group
 Delete user group
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -7981,7 +7877,6 @@ func (a *ProductsApiService) UsergroupsGroupIdDelete(ctx context.Context, groupI
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8025,20 +7920,19 @@ func (a *ProductsApiService) UsergroupsGroupIdDelete(ctx context.Context, groupI
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get user group information
 Get user group information
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
@@ -8048,10 +7942,10 @@ Get user group information
 */
 func (a *ProductsApiService) UsergroupsGroupIdGet(ctx context.Context, groupId int64) (UserGroup, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue UserGroup
 	)
 
@@ -8098,47 +7992,47 @@ func (a *ProductsApiService) UsergroupsGroupIdGet(ctx context.Context, groupId i
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v UserGroup
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update group information
 Update user group information
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param groupId Group ID
  * @param optional nil or *UsergroupsGroupIdPutOpts - Optional Parameters:
-     * @param "Usergroup" (optional.Interface of UserGroup) - 
+     * @param "Usergroup" (optional.Interface of UserGroup) -
 
 
 */
 
-type UsergroupsGroupIdPutOpts struct { 
+type UsergroupsGroupIdPutOpts struct {
 	Usergroup optional.Interface
 }
 
@@ -8148,7 +8042,6 @@ func (a *ProductsApiService) UsergroupsGroupIdPut(ctx context.Context, groupId i
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8178,10 +8071,10 @@ func (a *ProductsApiService) UsergroupsGroupIdPut(ctx context.Context, groupId i
 	}
 	// body params
 	if localVarOptionals != nil && localVarOptionals.Usergroup.IsSet() {
-		
+
 		localVarOptionalUsergroup, localVarOptionalUsergroupok := localVarOptionals.Usergroup.Value().(UserGroup)
 		if !localVarOptionalUsergroupok {
-				return nil, reportError("usergroup should be UserGroup")
+			return nil, reportError("usergroup should be UserGroup")
 		}
 		localVarPostBody = &localVarOptionalUsergroup
 	}
@@ -8201,30 +8094,29 @@ func (a *ProductsApiService) UsergroupsGroupIdPut(ctx context.Context, groupId i
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Create user group
 Create user group information
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *UsergroupsPostOpts - Optional Parameters:
-     * @param "Usergroup" (optional.Interface of UserGroup) - 
+     * @param "Usergroup" (optional.Interface of UserGroup) -
 
 
 */
 
-type UsergroupsPostOpts struct { 
+type UsergroupsPostOpts struct {
 	Usergroup optional.Interface
 }
 
@@ -8234,7 +8126,6 @@ func (a *ProductsApiService) UsergroupsPost(ctx context.Context, localVarOptiona
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8263,10 +8154,10 @@ func (a *ProductsApiService) UsergroupsPost(ctx context.Context, localVarOptiona
 	}
 	// body params
 	if localVarOptionals != nil && localVarOptionals.Usergroup.IsSet() {
-		
+
 		localVarOptionalUsergroup, localVarOptionalUsergroupok := localVarOptionals.Usergroup.Value().(UserGroup)
 		if !localVarOptionalUsergroupok {
-				return nil, reportError("usergroup should be UserGroup")
+			return nil, reportError("usergroup should be UserGroup")
 		}
 		localVarPostBody = &localVarOptionalUsergroup
 	}
@@ -8286,32 +8177,31 @@ func (a *ProductsApiService) UsergroupsPost(ctx context.Context, localVarOptiona
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get current user info.
-This endpoint is to get the current user infomation. 
+This endpoint is to get the current user infomation.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
 
 @return User
 */
 func (a *ProductsApiService) UsersCurrentGet(ctx context.Context) (User, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue User
 	)
 
@@ -8357,38 +8247,38 @@ func (a *ProductsApiService) UsersCurrentGet(ctx context.Context) (User, *http.R
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v User
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get registered users of Harbor.
-This endpoint is for user to search registered users, support for filtering results with username.Notice, by now this operation is only for administrator. 
+This endpoint is for user to search registered users, support for filtering results with username.Notice, by now this operation is only for administrator.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param optional nil or *UsersGetOpts - Optional Parameters:
      * @param "Username" (optional.String) -  Username for filtering results.
@@ -8399,19 +8289,19 @@ This endpoint is for user to search registered users, support for filtering resu
 @return []User
 */
 
-type UsersGetOpts struct { 
+type UsersGetOpts struct {
 	Username optional.String
-	Email optional.String
-	Page optional.Int32
+	Email    optional.String
+	Page     optional.Int32
 	PageSize optional.Int32
 }
 
 func (a *ProductsApiService) UsersGet(ctx context.Context, localVarOptionals *UsersGetOpts) ([]User, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue []User
 	)
 
@@ -8469,38 +8359,38 @@ func (a *ProductsApiService) UsersGet(ctx context.Context, localVarOptionals *Us
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v []User
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Creates a new user account.
-This endpoint is to create a user if the user does not already exist. 
+This endpoint is to create a user if the user does not already exist.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param user New created user.
 
@@ -8512,7 +8402,6 @@ func (a *ProductsApiService) UsersPost(ctx context.Context, user User) (*http.Re
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8557,22 +8446,21 @@ func (a *ProductsApiService) UsersPost(ctx context.Context, user User) (*http.Re
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Mark a registered user as be removed.
-This endpoint let administrator of Harbor mark a registered user as be removed.It actually won&#39;t be deleted from DB. 
+This endpoint let administrator of Harbor mark a registered user as be removed.It actually won&#39;t be deleted from DB.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId User ID for marking as to be removed.
 
@@ -8584,7 +8472,6 @@ func (a *ProductsApiService) UsersUserIdDelete(ctx context.Context, userId int32
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8628,22 +8515,21 @@ func (a *ProductsApiService) UsersUserIdDelete(ctx context.Context, userId int32
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Get a user&#39;s profile.
-Get user&#39;s profile with user id. 
+Get user&#39;s profile with user id.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId Registered user ID
 
@@ -8651,10 +8537,10 @@ Get user&#39;s profile with user id.
 */
 func (a *ProductsApiService) UsersUserIdGet(ctx context.Context, userId int32) (User, *http.Response, error) {
 	var (
-		localVarHttpMethod = strings.ToUpper("Get")
-		localVarPostBody   interface{}
-		localVarFileName   []string
-		localVarFileBytes  [][]byte
+		localVarHttpMethod  = strings.ToUpper("Get")
+		localVarPostBody    interface{}
+		localVarFileName    []string
+		localVarFileBytes   [][]byte
 		localVarReturnValue User
 	)
 
@@ -8701,38 +8587,38 @@ func (a *ProductsApiService) UsersUserIdGet(ctx context.Context, userId int32) (
 
 	if localVarHttpResponse.StatusCode < 300 {
 		// If we succeed, return the data, otherwise pass on to decode error.
-		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-		if err == nil { 
+		err = a.client.decode(&localVarReturnValue, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+		if err == nil {
 			return localVarReturnValue, localVarHttpResponse, err
 		}
 	}
 
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		if localVarHttpResponse.StatusCode == 200 {
 			var v User
-			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"));
-				if err != nil {
-					newErr.error = err.Error()
-					return localVarReturnValue, localVarHttpResponse, newErr
-				}
-				newErr.model = v
+			err = a.client.decode(&v, localVarBody, localVarHttpResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
 				return localVarReturnValue, localVarHttpResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHttpResponse, newErr
 		}
-		
+
 		return localVarReturnValue, localVarHttpResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Change the password on a user that already exists.
-This endpoint is for user to update password. Users with the admin role can change any user&#39;s password. Guest users can change only their own password. 
+This endpoint is for user to update password. Users with the admin role can change any user&#39;s password. Guest users can change only their own password.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId Registered user ID.
  * @param password Password to be updated, the attribute &#39;old_password&#39; is optional when the API is called by the system administrator.
@@ -8745,7 +8631,6 @@ func (a *ProductsApiService) UsersUserIdPasswordPut(ctx context.Context, userId 
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8791,22 +8676,21 @@ func (a *ProductsApiService) UsersUserIdPasswordPut(ctx context.Context, userId 
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update a registered user to change his profile.
-This endpoint let a registered user change his profile. 
+This endpoint let a registered user change his profile.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId Registered user ID
  * @param profile Only email, realname and comment can be modified.
@@ -8819,7 +8703,6 @@ func (a *ProductsApiService) UsersUserIdPut(ctx context.Context, userId int32, p
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8865,22 +8748,21 @@ func (a *ProductsApiService) UsersUserIdPut(ctx context.Context, userId int32, p
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
 	return localVarHttpResponse, nil
 }
 
-/* 
+/*
 ProductsApiService Update a registered user to change to be an administrator of Harbor.
-This endpoint let a registered user change to be an administrator of Harbor. 
+This endpoint let a registered user change to be an administrator of Harbor.
  * @param ctx context.Context - for authentication, logging, cancellation, deadlines, tracing, etc. Passed from http.Request or context.Background().
  * @param userId Registered user ID
  * @param hasAdminRole Toggle a user to admin or not.
@@ -8893,7 +8775,6 @@ func (a *ProductsApiService) UsersUserIdSysadminPut(ctx context.Context, userId 
 		localVarPostBody   interface{}
 		localVarFileName   []string
 		localVarFileBytes  [][]byte
-		
 	)
 
 	// create path and map variables
@@ -8939,13 +8820,12 @@ func (a *ProductsApiService) UsersUserIdSysadminPut(ctx context.Context, userId 
 		return localVarHttpResponse, err
 	}
 
-
 	if localVarHttpResponse.StatusCode >= 300 {
 		newErr := GenericSwaggerError{
-			body: localVarBody,
+			body:  localVarBody,
 			error: localVarHttpResponse.Status,
 		}
-		
+
 		return localVarHttpResponse, newErr
 	}
 
